@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">FlickrList</string>
+
+    <string name="boston">Boston</string>
+    <string name="paris">Paris</string>
+    <string name="nyc">New York City</string>
+    <string name="error_no_internet_force_update">Unfortunately, we cannot get new pictures without a network connection. Loading data from cache instead.</string>
+    <string name="error_no_pictures_found">No pictures found!</string>
+    <string name="error_no_connection">No internet connection. We need it for just a moment to cache all the things!</string>
+</resources>

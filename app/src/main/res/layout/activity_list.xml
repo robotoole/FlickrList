@@ -1,0 +1,15 @@
+<FrameLayout
+    android:id="@+id/container"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ListActivity"
+    tools:ignore="MergeRootFrame">
+    <!-- Fragment -->
+    <fragment
+        android:id="@+id/activity_fragment_flickr_list"
+        android:name="com.robotoole.flickrlist.app.fragment.FlickrListFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</FrameLayout>

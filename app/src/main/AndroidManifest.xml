@@ -1,0 +1,39 @@
+<manifest
+    package="com.robotoole.flickrlist"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/FlickrTheme">
+
+        <activity android:name=".app.ListActivity">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".app.ImageDetailActivity">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".model.service.FlickrXMLService"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="com.robotoole.flickrlist.service.XMLService"/>
+            </intent-filter>
+        </service>
+    </application>
+</manifest>

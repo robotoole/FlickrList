@@ -1,0 +1,27 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="FlickrTheme" parent="android:Theme.Material.Light">
+        <!-- Customize your theme here. -->
+        <item name="android:colorPrimary">@color/red</item>
+
+        <!-- enable transitions -->
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowAllowEnterTransitionOverlap">true</item>
+        <item name="android:windowAllowReturnTransitionOverlap">true</item>
+        <!-- translucent navigation bar -->
+        <!-- this breaks the recycler view offset -->
+        <!--<item name="android:windowTranslucentNavigation">true</item>-->
+
+        <!-- activity enter and exit transitions -->
+        <item name="android:windowEnterTransition">@android:transition/move</item>
+        <item name="android:windowExitTransition">@android:transition/move</item>
+
+        <!-- shared element transitions -->
+        <item name="android:windowSharedElementEnterTransition">
+            @transition/trans_move</item>
+        <item name="android:windowSharedElementExitTransition">
+            @transition/trans_move</item>
+    </style>
+
+</resources>

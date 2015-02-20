@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ListActivity">
+    <item
+        android:id="@+id/action_boston"
+        android:orderInCategory="100"
+        android:title="@string/boston"/>
+    <item
+        android:id="@+id/action_paris"
+        android:orderInCategory="100"
+        android:title="@string/paris"/>
+    <item
+        android:id="@+id/action_nyc"
+        android:orderInCategory="100"
+        android:title="@string/nyc"/>
+</menu>
