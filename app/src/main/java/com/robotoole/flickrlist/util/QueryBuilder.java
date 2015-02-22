@@ -1,7 +1,5 @@
 package com.robotoole.flickrlist.util;
 
-import java.util.List;
-
 /**
  * Created by robert on 2/19/15.
  */
@@ -12,11 +10,16 @@ public class QueryBuilder {
      * @param tags List of tags to search for
      * @return
      */
-    public static String buildFlickrTagsQuery(List<String> tags) {
+    public static String buildFlickrTagsQuery(String[] tags) {
         String query = "";
-        String separator = (tags.size() > 1) ? "," : "";
+        String separator = (tags.length > 1) ? "," : "";
         for (String tag : tags) {
-            query += tag + separator;
+            if (tag == tags[tags.length - 1]) {
+                //ensure no trailing comma's
+                separator = "";
+            }
+
+            query += tag.trim() + separator;
         }
         return query;
     }
@@ -28,6 +31,9 @@ public class QueryBuilder {
      * @return
      */
     public static String buildFlickrTagsQuery(String tags) {
+        if (tags.contains(",")) {
+            return buildFlickrTagsQuery(tags.split(","));
+        }
         return tags;
     }
 }

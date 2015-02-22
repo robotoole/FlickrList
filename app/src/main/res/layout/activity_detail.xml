@@ -9,7 +9,7 @@
     <!-- Fragment -->
     <fragment
         android:id="@+id/activity_fragment_flickr_list"
-        android:name="com.robotoole.flickrlist.app.fragment.FlickrDetailFragment"
+        android:name="com.robotoole.flickrlist.app.fragment.DetailFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 </FrameLayout>

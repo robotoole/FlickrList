@@ -29,7 +29,9 @@ public class Picture {
     private String date_taken;
     private String description;
     private String published;
+    @DatabaseField
     private String author;
+    @DatabaseField
     private String author_id;
     private String tags;
 
@@ -92,7 +94,6 @@ public class Picture {
         nameList = nameElement.getChildNodes();
         setTitle(((Node) nameList.item(0)).getNodeValue());
 
-
         //set image url
         NodeList linksList = fstElmnt.getElementsByTagName("link");
         Element linkElement = null;
@@ -103,6 +104,25 @@ public class Picture {
             }
         }
         setLink(linkElement.getAttribute("href"));
+
+
+        NodeList authorList = fstElmnt.getElementsByTagName("author");
+        Element authorElement = (Element) authorList.item(0);
+
+        //set link to author
+        NodeList uriList = authorElement.getElementsByTagName("uri");
+        Element uriElement = (Element) uriList.item(0);
+        uriList = uriElement.getChildNodes();
+        setAuthor_id(((Node) uriList.item(0)).getNodeValue());
+
+        //reset the author element to the root node
+        authorElement = (Element) authorList.item(0);
+
+        //set author name
+        NodeList authorNameList = authorElement.getElementsByTagName("name");
+        Element authorNameElement = (Element) authorNameList.item(0);
+        authorNameList = authorNameElement.getChildNodes();
+        setAuthor(((Node) authorNameList.item(0)).getNodeValue());
 
         return this;
     }

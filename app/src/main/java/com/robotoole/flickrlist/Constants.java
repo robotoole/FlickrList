@@ -10,7 +10,9 @@ public class Constants {
     public static final String EXTRA_API_URL = "com.robotoole.flickrlist.api_url";
     public static final String EXTRA_TITLE = "com.robotoole.flickrlist.title";
     public static final String EXTRA_FORCE_UPDATE = "com.robotoole.flickrlist.force_update";
+    public static final String EXTRA_IMAGE_URL = "com.robotoole.flickrlist.image_url";
+    public static final String EXTRA_AUTHOR = "com.robotoole.flickrlist.author";
+    public static final String EXTRA_AUTHOR_LINK = "com.robotoole.flickrlist.author_link";
 
-    public static final String DETAIL_FRAGMENT_TAG = "com.robotoole.flickrlist.detail_fragment";
-    public static final String LIST_FRAGMENT_TAG = "com.robotoole.flickrlist.list_fragment";
+    public static final int ANIMATION_DURATION = 300;
 }

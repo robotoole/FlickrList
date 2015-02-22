@@ -2,6 +2,8 @@ package com.robotoole.flickrlist.app.adapter;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -58,7 +60,7 @@ public class PictureAdapter extends RecyclerView.Adapter<PictureAdapter.ViewHold
         this.pictures.clear();
         this.pictures.addAll(pictures);
         notifyDataSetChanged();
-        mListView.getLayoutManager().scrollToPosition(0);
+        mListView.smoothScrollToPosition(0);
         Log.d("adapter", "adapter notified!");
     }
 
@@ -117,6 +119,12 @@ public class PictureAdapter extends RecyclerView.Adapter<PictureAdapter.ViewHold
     private void setPictureViewData(ViewHolder holder, Picture picture) {
         holder.title.setText(picture.getTitle());
 
+        holder.author.setText(Html.fromHtml("<a href=\""
+                + picture.getAuthor_id()
+                + "\">" + mListView.getContext().getString(R.string.by,
+                picture.getAuthor()) + "</a>"));
+        holder.author.setMovementMethod(LinkMovementMethod.getInstance());
+
         Picasso.with(mListView.getContext())
                 .load(picture.getLink())
                 .into(holder.imageView);
@@ -131,6 +139,8 @@ public class PictureAdapter extends RecyclerView.Adapter<PictureAdapter.ViewHold
         public ImageView imageView;
         @InjectView(R.id.fragment_list_item_title)
         public TextView title;
+        @InjectView(R.id.fragment_list_item_author)
+        public TextView author;
 
         /**
          * Create a new Instance of the ViewHolder.

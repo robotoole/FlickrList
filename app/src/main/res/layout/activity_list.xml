@@ -1,15 +1,37 @@
-<FrameLayout
+<RelativeLayout
     android:id="@+id/container"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ListActivity"
     tools:ignore="MergeRootFrame">
-    <!-- Fragment -->
+
+    <!-- Header -->
+    <fragment
+        android:id="@+id/activity_fragment_header"
+        android:name="com.robotoole.flickrlist.app.fragment.HeaderFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <!-- List -->
     <fragment
         android:id="@+id/activity_fragment_flickr_list"
-        android:name="com.robotoole.flickrlist.app.fragment.FlickrListFragment"
+        android:name="com.robotoole.flickrlist.app.fragment.ListFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
-</FrameLayout>
+
+    <!-- FAB -->
+    <ImageButton
+        android:id="@+id/activity_fab_search"
+        style="@style/FloatingActionButton"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="16dp"
+        android:layout_marginRight="16dp"
+        android:elevation="8dp"
+        android:src="@drawable/ic_search_white_18dp"/>
+</RelativeLayout>

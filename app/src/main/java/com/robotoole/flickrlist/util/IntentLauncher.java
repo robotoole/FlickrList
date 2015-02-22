@@ -7,7 +7,7 @@ import android.content.Intent;
 import com.robotoole.flickrlist.Constants;
 import com.robotoole.flickrlist.app.ImageDetailActivity;
 import com.robotoole.flickrlist.model.Picture;
-import com.robotoole.flickrlist.model.service.FlickrXMLService;
+import com.robotoole.flickrlist.model.service.DataService;
 
 /**
  * Helper class to consistently launch intents from any class.
@@ -24,7 +24,7 @@ public class IntentLauncher {
      * @param forceUpdate
      */
     public static void launchService(String url, Context context, boolean forceUpdate) {
-        Intent intent = new Intent(context, FlickrXMLService.class);
+        Intent intent = new Intent(context, DataService.class);
         intent.putExtra(Constants.EXTRA_API_URL, url);
         intent.putExtra(Constants.EXTRA_FORCE_UPDATE, forceUpdate);
         context.startService(intent);
@@ -41,8 +41,10 @@ public class IntentLauncher {
     public static void launchDetail(Picture picture, Context context,
                                     ActivityOptions options) {
         Intent intent = new Intent(context, ImageDetailActivity.class);
-        intent.putExtra(Constants.EXTRA_API_URL, picture.getLink());
+        intent.putExtra(Constants.EXTRA_IMAGE_URL, picture.getLink());
         intent.putExtra(Constants.EXTRA_TITLE, picture.getTitle());
+        intent.putExtra(Constants.EXTRA_AUTHOR, picture.getAuthor());
+        intent.putExtra(Constants.EXTRA_AUTHOR_LINK, picture.getAuthor_id());
 
         context.startActivity(intent, options.toBundle());
     }

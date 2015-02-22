@@ -24,7 +24,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     static final String TAG = DatabaseHelper.class.getSimpleName();
 
     private static final String DATABASE_NAME = "pictures.db";
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
 
     // the DAO object we use to access the SimpleData table
     private Dao<Picture, Integer> pictureDao = null;
@@ -35,8 +35,8 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     }
 
     /**
-     * This is called when the database is first created. Usually you should call createTable statements here to create
-     * the tables that will store your data.
+     * This is called when the database is first created. Call createTable statements
+     * here to create the tables that will store your data.
      */
     @Override
     public void onCreate(SQLiteDatabase db, ConnectionSource connectionSource) {
@@ -67,8 +67,8 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     }
 
     /**
-     * Returns the Database Access Object (DAO) for our SimpleData class. It will create it or just give the cached
-     * value.
+     * Returns the Database Access Object (DAO) for our SimpleData class.
+     * It will create it or just give the cached value.
      */
     public Dao<Picture, Integer> getDao() throws SQLException {
         if (pictureDao == null) {
@@ -78,8 +78,9 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     }
 
     /**
-     * Returns the RuntimeExceptionDao (Database Access Object) version of a Dao for our SimpleData class. It will
-     * create it or just give the cached value. RuntimeExceptionDao only through RuntimeExceptions.
+     * Returns the RuntimeExceptionDao (Database Access Object) version of a Dao
+     * for our Picture class. It will create it or just give the cached value.
+     * RuntimeExceptionDao only through RuntimeExceptions.
      */
     public RuntimeExceptionDao<Picture, Integer> getPictureDao() {
         if (pictureRuntimeExceptionDao == null) {
@@ -111,10 +112,10 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         sb.append("Found ").append(list.size()).append(" entries in DB in ").append("save").append("()\n");
 
         // if we already have items in the database, we need to delete them.
-        int simpleC = 1;
+        int counter = 1;
         for (Picture picture : list) {
-            sb.append("#").append(simpleC).append(": ").append(picture).append("\n");
-            simpleC++;
+            sb.append("#").append(counter).append(": ").append(picture).append("\n");
+            counter++;
         }
         sb.append("------------------------------------------\n");
         sb.append("Deleted ids:");
@@ -122,27 +123,22 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             pictureDao.delete(picture);
             sb.append(' ').append(picture.getId());
             Log.i(TAG, "deleting picture(" + picture.getId() + ")");
-            simpleC++;
+            counter++;
         }
         sb.append("\n");
         sb.append("------------------------------------------\n");
 
-        int createNum;
+        int createdCount;
         do {
-            createNum = pictures.size();
-        } while (createNum == list.size());
-        sb.append("Creating ").append(createNum).append(" new entries:\n");
-        for (int i = 0; i < createNum; i++) {
+            createdCount = pictures.size();
+        } while (createdCount == list.size());
+        sb.append("Creating ").append(createdCount).append(" new entries:\n");
+        for (int i = 0; i < createdCount; i++) {
             // store it in the database
             pictureDao.create(pictures.get(i));
             // output it
             sb.append('#').append(i + 1).append(": ");
             sb.append(pictures.get(i).getTitle()).append("\n");
-            try {
-                Thread.sleep(3);
-            } catch (InterruptedException e) {
-                // ignore
-            }
         }
 
         Log.d(TAG, sb.toString());
@@ -172,9 +168,12 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         List<Picture> pictures = getAllPictures();
 
         RuntimeExceptionDao<Picture, Integer> pictureDao = getPictureDao();
-        for (Picture picture : pictures) {
-            pictureDao.delete(picture);
-            Log.i(TAG, "deleting picture(" + picture.getId() + ")");
+
+        if (pictures != null && pictures.size() > 0) {
+            for (Picture picture : pictures) {
+                pictureDao.delete(picture);
+                Log.i(TAG, "deleting picture(" + picture.getId() + ")");
+            }
         }
     }
 }

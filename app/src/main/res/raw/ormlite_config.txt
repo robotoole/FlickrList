@@ -15,6 +15,12 @@ fieldName=title
 # --field-start--
 fieldName=link
 # --field-end--
+# --field-start--
+fieldName=author
+# --field-end--
+# --field-start--
+fieldName=author_id
+# --field-end--
 # --table-fields-end--
 # --table-end--
 #################################
